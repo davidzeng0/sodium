@@ -13,8 +13,8 @@ Napi::Value n_randombytes_buf(const Napi::CallbackInfo& info){
 Napi::Value n_crypto_secretbox_easy(const Napi::CallbackInfo& info){
 	auto out = info[0].As<Napi::Uint8Array>();
 	const auto in = info[1].As<Napi::Uint8Array>();
-	const auto nonce = info[3].As<Napi::Uint8Array>();
-	const auto key = info[4].As<Napi::Uint8Array>();
+	const auto nonce = info[2].As<Napi::Uint8Array>();
+	const auto key = info[3].As<Napi::Uint8Array>();
 
 	crypto_secretbox_easy(out.Data(), in.Data(), in.ByteLength(), nonce.Data(), key.Data());
 
