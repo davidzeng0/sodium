@@ -13,7 +13,9 @@
 		"buildjs": "tsup --entry.index src/index.ts --minify --target esnext --dts --treeshake",
 		"build": "npm run buildjs & cmake-js --CDNODE_ADDON_INC $(node -p \"require('node-addon-api').include_dir\"); wait",
 		"debug": "npm run buildjs & cmake-js -D --CDNODE_ADDON_INC $(node -p \"require('node-addon-api').include_dir\"); wait",
-		"clean": "rm -r build"
+		"clean": "rm -r build",
+		"prepare": "cmake-js --CDNODE_ADDON_INC $(node -p \"require('node-addon-api').include_dir\")",
+		"git-publish": "git-publish -b dist"
 	},
 	"devDependencies": {
 		"@types/node": "^20.4.2",
