@@ -7,7 +7,7 @@ Napi::Value n_randombytes_buf(const Napi::CallbackInfo& info){
 
 	randombytes_buf(buf.Data(), buf.ByteLength());
 
-	return info.Env().Undefined();
+	return Napi::Number::New(buf.ByteLength());
 }
 
 Napi::Value n_crypto_secretbox_easy(const Napi::CallbackInfo& info){
@@ -18,7 +18,7 @@ Napi::Value n_crypto_secretbox_easy(const Napi::CallbackInfo& info){
 
 	crypto_secretbox_easy(out.Data(), in.Data(), in.ByteLength(), nonce.Data(), key.Data());
 
-	return info.Env().Undefined();
+	return Napi::Number::New(in.ByteLength() + crypto_secretbox_MACBYTES);
 }
 
 Napi::Object init(Napi::Env env, Napi::Object exports){
