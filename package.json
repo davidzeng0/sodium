@@ -25,6 +25,7 @@
 	},
 	"files": [
 		"dist",
+		"native",
 		"CMakeLists.txt"
 	]
 }
