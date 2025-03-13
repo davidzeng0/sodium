@@ -1,0 +1,30 @@
+{
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "name": "sodium",
+  "version": "1.0.0",
+  "dependencies": {
+    "bindings": "^1.5.0",
+    "cmake-js": "7.2.1",
+    "node-addon-api": "^7.0.0"
+  },
+  "scripts": {
+    "install": "cmake-js --CDNODE_ADDON_INC $(node -p \"require('node-addon-api').include_dir\")",
+    "buildjs": "tsup --entry.index src/index.ts --minify --target esnext --dts --treeshake",
+    "build": "npm run buildjs & cmake-js --CDNODE_ADDON_INC $(node -p \"require('node-addon-api').include_dir\"); wait",
+    "debug": "npm run buildjs & cmake-js -D --CDNODE_ADDON_INC $(node -p \"require('node-addon-api').include_dir\"); wait",
+    "clean": "rm -r build",
+    "git-publish": "git-publish -b dist"
+  },
+  "devDependencies": {
+    "@types/node": "^20.4.2",
+    "git-publish": "^2.0.0",
+    "tsup": "^7.1.0",
+    "typescript": "^5.1.6"
+  },
+  "files": [
+    "dist",
+    "native",
+    "CMakeLists.txt"
+  ]
+}
